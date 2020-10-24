@@ -17,7 +17,12 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/budget", {
     useFindAndModify: false,
 });
 
-// routes
+
+const connection = mongoose.connection;
+
+connection.on("connected", function () {
+  console.log("Mongoose connected...");
+});
 
 
 app.listen(PORT, () => {
