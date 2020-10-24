@@ -88,7 +88,7 @@ app.get("/api/workouts/range", (req, res) => {
       .catch((err) => {
         console.log(err);
         res.json({
-          success: false,
+          error: true,
           data: null,
           message: "Failed to find workouts.",
         });
