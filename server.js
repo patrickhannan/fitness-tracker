@@ -17,13 +17,25 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/budget", {
     useFindAndModify: false,
 });
 
+// View routes
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "./public/index.html"));
+  });
+  
+  app.get("/exercise", (req, res) => {
+    res.sendFile(path.join(__dirname, "./public/exercise.html"));
+  });
+  
+  app.get("/stats", (req, res) => {
+    res.sendFile(path.join(__dirname, "./public/stats.html"));
+  });
 
+// Connection
 const connection = mongoose.connection;
 
 connection.on("connected", function () {
-  console.log("Mongoose connected...");
+  console.log("Mongoose connected");
 });
-
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
