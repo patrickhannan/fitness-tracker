@@ -80,6 +80,21 @@ app.put("/api/workouts/:id", (req, res) => {
       });
 });
 
+app.get("/api/workouts/range", (req, res) => {
+    db.Workout.find({}).limit(7)
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.json({
+          success: false,
+          data: null,
+          message: "Failed to find workouts.",
+        });
+      });
+  });
+
 // Connection
 const connection = mongoose.connection;
 
